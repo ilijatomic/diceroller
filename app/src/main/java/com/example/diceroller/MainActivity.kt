@@ -1,28 +1,36 @@
 package com.example.diceroller
 
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.diceroller.databinding.ActivityMainBinding
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    lateinit var diceImage: ImageView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        diceImage = findViewById(R.id.dice_image)
+        initListeners()
+    }
 
-        val rollButton: Button = findViewById(R.id.roll_button)
-        val aboutMe: Button = findViewById(R.id.about_me_button)
-        aboutMe.setOnClickListener { view -> onClick(view) }
-        rollButton.setOnClickListener { view -> onClick(view) }
+    override fun initData() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initListeners() {
+        binding.apply {
+            aboutMeButton.setOnClickListener { view -> onClick(view) }
+            rollButton.setOnClickListener { view -> onClick(view) }
+        }
     }
 
     private fun onClick(view: View) {
@@ -38,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice() {
-
         val drawableRes = when (Random().nextInt(6) + 1) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
@@ -48,6 +55,6 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableRes);
+        binding.diceImage.setImageResource(drawableRes)
     }
 }
