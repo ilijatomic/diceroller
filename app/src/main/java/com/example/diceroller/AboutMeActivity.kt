@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
 import com.example.diceroller.databinding.ActivityAboutMeBinding
+import kotlinx.android.synthetic.main.activity_about_me.*
 
 class AboutMeActivity : BaseActivity() {
 
@@ -24,7 +25,13 @@ class AboutMeActivity : BaseActivity() {
     }
 
     override fun initListeners() {
-        binding.doneButton.setOnClickListener { addNickname() }
+        done_button.setOnClickListener { onClick(it) }
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            binding.doneButton.id -> addNickname()
+        }
     }
 
     private fun addNickname() {

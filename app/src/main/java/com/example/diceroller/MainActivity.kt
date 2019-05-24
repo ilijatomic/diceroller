@@ -3,11 +3,7 @@ package com.example.diceroller
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.diceroller.databinding.ActivityMainBinding
 import java.util.*
 
@@ -28,16 +24,23 @@ class MainActivity : BaseActivity() {
 
     override fun initListeners() {
         binding.apply {
-            aboutMeButton.setOnClickListener { view -> onClick(view) }
-            rollButton.setOnClickListener { view -> onClick(view) }
+            aboutMeButton.setOnClickListener { onClick(it) }
+            rollButton.setOnClickListener { onClick(it) }
+            colorMyViewButton.setOnClickListener { onClick(it) }
         }
     }
 
-    private fun onClick(view: View) {
+    override fun onClick(view: View) {
         when (view.id) {
             R.id.roll_button -> rollDice()
             R.id.about_me_button -> startAboutMe()
+            R.id.color_my_view_button -> startColorMyView()
         }
+    }
+
+    private fun startColorMyView() {
+        val intent = Intent(this, ColorMyView::class.java)
+        startActivity(intent)
     }
 
     private fun startAboutMe() {

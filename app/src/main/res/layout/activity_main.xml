@@ -30,5 +30,12 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"/>
 
+        <Button
+                android:id="@+id/color_my_view_button"
+                android:layout_width="wrap_content"
+                android:text="@string/color_my_view"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </layout>
